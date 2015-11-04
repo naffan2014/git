@@ -81,3 +81,19 @@ To git@github.com:michaelliao/learngit.git
 git branch --set-upstream dev origin/dev 对就是这个，而换成了 git branch --set-upstream-to origin/dev dev
 
 嗯 确实。 除了 --set-upstream-to 以外还可以用 --track。
+
+自问自答了
+
+1，该分支   指的是【$ git push origin 本地分支名】 这句话中的分支
+
+2，origin只是被被clone的Github上的版本库，相当于当前被clone的版本库gitskills的别名就是 origin
+
+3，$ git push origin master 这句话中的master是指本地的master，并非是github中远程库的master。
+
+4，要是在本地版本库中创建分支 ceshi  与github中远程库origin的 一个分支 ceshi_1相关联（假设远程库中已经有ceshi_1分支）【$ git checkout -b ceshi origin/ceshi_1】，那么要是在 本地执行
+
+$ git push origin ceshi ——意思是在github上的远程库（origin）上创建分支 ceshi，并将本地ceshi分支的内容推送（push）到远程库（origin）上的新分支 ceshi上，而不是 推送到所谓与之关联的 ceshi_1上
+
+因此要是想推送到相关联的ceshi_1上，就要这样写 $ git push remote ceshi:ceshi_1
+
+所以在创建本地版本库的分支和远程分支相关联的时候，名称最好起的一样
