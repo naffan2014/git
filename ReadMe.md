@@ -317,3 +317,6 @@ rebase也需要手动解决冲突。
 
 先在new分支提交。
 切换到master
+然后在idea执行git rebase
+from new
+onto master
