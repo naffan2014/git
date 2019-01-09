@@ -334,3 +334,5 @@ rebase了后合并。
 不知道这个流程是否ok
 
 测试idea git rebase流程。new分支
+
+#### 测试冲突
