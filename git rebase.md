@@ -36,6 +36,8 @@ git add .
 git commit -m 'add helloworld.py c5'
 ```
 
+#### 这里合并？
+
 ### rebase前
 ![](https://cos.whatled.com/img/20190109135644.png)
 
