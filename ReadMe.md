@@ -444,4 +444,4 @@ git add -u 保存修改和删除，但是不包括新建文件。
 git merge new
 
 4. git checkout new
-git merge new
+git merge master
