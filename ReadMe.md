@@ -445,3 +445,5 @@ git merge new
 
 4. git checkout new
 git merge master
+
+idea git rebase操作步骤
