@@ -35,3 +35,6 @@ vim helloworld.py # 添加上helloworld.py文件
 git add .
 git commit -m 'add helloworld.py c5'
 ```
+
+### rebase前
+![](https://cos.whatled.com/img/20190109135644.png)
