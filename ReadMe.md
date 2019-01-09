@@ -231,3 +231,5 @@ git cherry-pick <commit>	选择一个commit，合并进当前分支
 以上就是关于Git的一些常用命令及详细阐述，相信能对Git有一个初步的认识。
 
 #### 来自 https://mp.weixin.qq.com/s/baCSBOg30uQfIPXSDQkAuQ
+
+这里修改一下，rebase到master。
