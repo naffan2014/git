@@ -36,7 +36,14 @@ git add .
 git commit -m 'add helloworld.py c5'
 ```
 
+#### 这里合并？
+
 ### rebase前
 ![](https://cos.whatled.com/img/20190109135644.png)
 
 ### 切换到master分支
+![](https://cos.whatled.com/img/20190109140047.png)
+
+### 切回到dev分支
+![](https://cos.whatled.com/img/20190109140204.png)
+#### 提交记录
