@@ -348,3 +348,6 @@ rebase了后合并。
 ### 测试new分支+3
 
 ### 测试new分支+1
+
+使用git版本管理工具，必问git rebase的用法，但之前项目组人数5人，一直使用的是git pull，git commit 和git push，几乎没有用git rebase来变基，减少难看的merge 类型的commit。 
+最近一个新项目，两地合作办公大概有10人共用一个项目分支，几分钟内可能有多人提交，造成连续多个merge在gitk的路径中，看不清某个人某次有价值的提交是哪一条，故组长建议大家使用git rebase。
