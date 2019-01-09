@@ -351,3 +351,67 @@ rebase了后合并。
 
 使用git版本管理工具，必问git rebase的用法，但之前项目组人数5人，一直使用的是git pull，git commit 和git push，几乎没有用git rebase来变基，减少难看的merge 类型的commit。 
 最近一个新项目，两地合作办公大概有10人共用一个项目分支，几分钟内可能有多人提交，造成连续多个merge在gitk的路径中，看不清某个人某次有价值的提交是哪一条，故组长建议大家使用git rebase。
+
+```bash
+git stash
+git pull —rebase
+git stash pop
+手动解决冲突
+git add -u
+git rebase —continue
+如果此时提示No rebase in progress?则表示已经没有冲突了；否则上面两步要重复多次
+git commit -m “xxx”
+git push origin [branch] -f
+```
+
+[精华部分]使用下面的关系区别这两个操作： 
+git pull = git fetch + git merge 
+git pull –rebase = git fetch + git rebase
+
+
+![](https://cos.whatled.com/img/20190109181943.png)
+git pull –rebase 理解 
+这个命令做了以下内容： 
+a.把你 commit 到本地仓库的内容，取出来放到暂存区(stash)（这时你的工作区是干净的） 
+b.然后从远端拉取代码到本地，由于工作区是干净的，所以不会有冲突 
+c.从暂存区把你之前提交的内容取出来，跟拉下来的代码合并 
+所以 rebase 在拉代码前要确保你本地工作区是干净的，如果你本地修改的内容没完全 commit 或者 stash，就会 rebase 失败。
+
+还附上了git add -u的解释：
+git add 的几种参数区别： 
+git add -A 保存所有的修改 
+git add . 保存新的添加和修改，但是不包括删除 
+git add -u 保存修改和删除，但是不包括新建文件。 
+如果只想提交某个文件，可以使用git add 路径/文件名 或者 git add 路径/
+
+这一篇解释了手动解决冲突时<<<<和=====的含义 
+一般情况下rebase都是会有冲突的，详细查看冲突可以用命令git status然后就会显示哪个文件有冲突，然后打开有冲突的哪个文件，会发现有一些“<<<<<<<”， “=======”， “>>>>>>>” 这样的符号。
+
+
+“<<<<<<<” 表示冲突代码开始
+
+“=======” 表示test与master冲突代码分隔符
+
+“>>>>>>>" 表示冲突代码的结束
+
+<<<<<<<  
+所以这一块区域test的代码
+
+=======  
+这一块区域master的代码
+
+>>>>>>> 
+
+对于rebase的工作流以代码的形式也体现的很清楚：
+
+git rebase 
+while(存在冲突) {
+    git status
+    找到当前冲突文件，编辑解决冲突
+    git add -u
+    git rebase --continue
+    if( git rebase --abort )
+        break; 
+}
+
+
