@@ -322,3 +322,6 @@ from new
 onto master
 
 ![](https://cos.whatled.com/img/20190109171718.png)
+
+new和master已经ok了。
+rebase了后合并。
