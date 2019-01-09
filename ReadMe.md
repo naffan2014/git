@@ -447,3 +447,32 @@ git merge new
 git merge master
 
 idea git rebase操作步骤
+1.在new分支，提交干净。
+2.选中项目右键->Git->Repository->Rebase
+![](https://cos.whatled.com/img/20190109190117.png)
+
+![](https://cos.whatled.com/img/20190109190252.png)
+Onto为需要rebase的分支，比如master
+
+使用命令的形式为:
+    git rebase   [startpoint]   [endpoint]  --onto  [branchName]
+
+其中，[startpoint]  [endpoint]仍然和上一个命令一样指定了一个编辑区间(前开后闭)，
+--onto的意思是要将该指定的提交复制到哪个分支上。
+
+
+发生冲突
+while(存在冲突) {
+    git status
+    找到当前冲突文件，编辑解决冲突
+    git add -u
+    git rebase --continue
+    if( git rebase --abort )
+        break; 
+}
+
+3. git checkout master
+git merge new
+
+4. git checkout new
+git merge master
