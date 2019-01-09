@@ -331,3 +331,6 @@ rebase了后合并。
 ![](https://cos.whatled.com/img/20190109172144.png)
 
 ### 调整
+不知道这个流程是否ok
+
+测试idea git rebase流程。new分支
