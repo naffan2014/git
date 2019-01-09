@@ -415,3 +415,33 @@ while(存在冲突) {
 }
 
 
+### 简化版
+1.在new分支，提交干净。
+
+2.git rebase master
+
+发生冲突
+while(存在冲突) {
+    git status
+    找到当前冲突文件，编辑解决冲突
+    git add -u
+    git rebase --continue
+    if( git rebase --abort )
+        break; 
+}
+rebase的时候，修改冲突后的提交不是使用commit命令，
+而是执行rebase命令指定 --continue选项。
+若要取消rebase，指定 --abort选项。
+
+附上了git add -u的解释：
+git add 的几种参数区别： 
+git add -A 保存所有的修改 
+git add . 保存新的添加和修改，但是不包括删除 
+git add -u 保存修改和删除，但是不包括新建文件。 
+如果只想提交某个文件，可以使用git add 路径/文件名 或者 git add 路径/
+
+3. git checkout master
+git merge new
+
+4. git checkout new
+git merge new
