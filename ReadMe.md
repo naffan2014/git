@@ -235,3 +235,5 @@ git cherry-pick <commit>	选择一个commit，合并进当前分支
 这里修改一下，rebase到master。
 
 好像有点rebase的感觉了。
+
+再修改一下。
