@@ -12,7 +12,11 @@ Creating a new branch is quick AND simple && simple.
 
 no-ff!!!
 
+<<<<<<<<< Temporary merge branch 1
+#### 来自 https://mp.weixin.qq.com/s/baCSBOg30uQfIPXSDQkAuQ
 
+=========
+>>>>>>>>> Temporary merge branch 2
 #### 在日常工作中，经常会用到Git操作。但是对于新人来讲，刚上来对Git很陌生，操作起来也很懵逼。本篇文章主要针对刚开始接触Git的新人，理解Git的基本原理，掌握常用的一些命令。
 
 ## 1.Git工作流程
