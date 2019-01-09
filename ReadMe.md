@@ -237,3 +237,5 @@ git cherry-pick <commit>	选择一个commit，合并进当前分支
 #### 来自 https://mp.weixin.qq.com/s/baCSBOg30uQfIPXSDQkAuQ
 
 这里修改一下，rebase到master。
+
+好像有点rebase的感觉了。
