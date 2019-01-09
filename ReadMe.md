@@ -320,3 +320,5 @@ rebase也需要手动解决冲突。
 然后在idea执行git rebase
 from new
 onto master
+
+![](https://cos.whatled.com/img/20190109171718.png)
