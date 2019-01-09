@@ -12,11 +12,7 @@ Creating a new branch is quick AND simple && simple.
 
 no-ff!!!
 
-<<<<<<<<< Temporary merge branch 1
-#### 来自 https://mp.weixin.qq.com/s/baCSBOg30uQfIPXSDQkAuQ
 
-=========
->>>>>>>>> Temporary merge branch 2
 #### 在日常工作中，经常会用到Git操作。但是对于新人来讲，刚上来对Git很陌生，操作起来也很懵逼。本篇文章主要针对刚开始接触Git的新人，理解Git的基本原理，掌握常用的一些命令。
 
 ## 1.Git工作流程
@@ -241,3 +237,31 @@ git cherry-pick <commit>	选择一个commit，合并进当前分支
 好像有点rebase的感觉了。
 
 再修改一下。
+
+实验结果好像跟下面的不太一致。
+rebase
+
+
+![](https://cos.whatled.com/img/20190109155339.png)
+
+
+
+rebase又称为衍合，是合并的另外一种选择。
+
+在开始阶段，我们处于new分支上，执行git rebase dev，
+那么new分支上新的commit都在master分支上重演一遍，
+最后checkout切换回到new分支。这一点与merge是一样的，
+合并前后所处的分支并没有改变。
+git rebase dev，
+通俗的解释就是new分支想站在dev的肩膀上继续下去。
+rebase也需要手动解决冲突。
+
+=========================================
+我现在在dev分支那么。
+在开始阶段，我们处于dev分支上，执行git rebase master，
+那么dev分支上新的commit都在master分支上重演一遍，
+最后checkout切换回到dev分支。这一点与merge是一样的，
+合并前后所处的分支并没有改变。
+git rebase master，
+通俗的解释就是dev分支想站在master的肩膀上继续下去。
+rebase也需要手动解决冲突。
