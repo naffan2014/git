@@ -156,15 +156,20 @@ rebase与merge的区别
 
 
 现在我们有这样的两个分支,test和master，提交如下：
-
+```
       D---E test
      /
 A---B---C---F master
-在master执行git merge test,然后会得到如下结果：
+```
 
+在master执行git merge test,然后会得到如下结果：
+```
       D--------E
      /          \
-A---B---C---F----G   test, master
+A---B---C---F----G
+```
+test, master
+
 在master执行git rebase test，然后得到如下结果：
 
 A---B---D---E---C'---F'   test, master
@@ -312,3 +317,175 @@ rebase也需要手动解决冲突。
 再试试 -2。
 ==========================
 
+线条开始变直了。
+线条开始变直了。
+===================
+
+先在new分支提交。
+切换到master
+然后在idea执行git rebase
+from new
+onto master
+
+![](https://cos.whatled.com/img/20190109171718.png)
+
+new和master已经ok了。
+rebase了后合并。
+
+
+### 优化
+![](https://cos.whatled.com/img/20190109172144.png)
+
+### 调整
+不知道这个流程是否ok
+
+测试idea git rebase流程。new分支
+#### 这个流程存在问题。本来只修改很小的部分。
+
+######## 测试
+
+### 测试new分支
+
+### 测试new分支+1
+
+### 测试new分支+2
+
+### 测试new分支+3
+
+### 测试new分支+1
+
+使用git版本管理工具，必问git rebase的用法，但之前项目组人数5人，一直使用的是git pull，git commit 和git push，几乎没有用git rebase来变基，减少难看的merge 类型的commit。 
+最近一个新项目，两地合作办公大概有10人共用一个项目分支，几分钟内可能有多人提交，造成连续多个merge在gitk的路径中，看不清某个人某次有价值的提交是哪一条，故组长建议大家使用git rebase。
+
+```bash
+git stash
+git pull —rebase
+git stash pop
+手动解决冲突
+git add -u
+git rebase —continue
+如果此时提示No rebase in progress?则表示已经没有冲突了；否则上面两步要重复多次
+git commit -m “xxx”
+git push origin [branch] -f
+```
+
+[精华部分]使用下面的关系区别这两个操作： 
+git pull = git fetch + git merge 
+git pull –rebase = git fetch + git rebase
+
+
+![](https://cos.whatled.com/img/20190109181943.png)
+git pull –rebase 理解 
+这个命令做了以下内容： 
+a.把你 commit 到本地仓库的内容，取出来放到暂存区(stash)（这时你的工作区是干净的） 
+b.然后从远端拉取代码到本地，由于工作区是干净的，所以不会有冲突 
+c.从暂存区把你之前提交的内容取出来，跟拉下来的代码合并 
+所以 rebase 在拉代码前要确保你本地工作区是干净的，如果你本地修改的内容没完全 commit 或者 stash，就会 rebase 失败。
+
+还附上了git add -u的解释：
+git add 的几种参数区别： 
+git add -A 保存所有的修改 
+git add . 保存新的添加和修改，但是不包括删除 
+git add -u 保存修改和删除，但是不包括新建文件。 
+如果只想提交某个文件，可以使用git add 路径/文件名 或者 git add 路径/
+
+这一篇解释了手动解决冲突时<<<<和=====的含义 
+一般情况下rebase都是会有冲突的，详细查看冲突可以用命令git status然后就会显示哪个文件有冲突，然后打开有冲突的哪个文件，会发现有一些“<<<<<<<”， “=======”， “>>>>>>>” 这样的符号。
+
+
+“<<<<<<<” 表示冲突代码开始
+
+“=======” 表示test与master冲突代码分隔符
+
+“>>>>>>>" 表示冲突代码的结束
+
+<<<<<<<  
+所以这一块区域test的代码
+
+=======  
+这一块区域master的代码
+
+>>>>>>> 
+
+对于rebase的工作流以代码的形式也体现的很清楚：
+
+git rebase 
+while(存在冲突) {
+    git status
+    找到当前冲突文件，编辑解决冲突
+    git add -u
+    git rebase --continue
+    if( git rebase --abort )
+        break; 
+}
+
+
+### 简化版
+1.在new分支，提交干净。
+
+2.git rebase master
+
+发生冲突
+while(存在冲突) {
+    git status
+    找到当前冲突文件，编辑解决冲突
+    git add -u
+    git rebase --continue
+    if( git rebase --abort )
+        break; 
+}
+rebase的时候，修改冲突后的提交不是使用commit命令，
+而是执行rebase命令指定 --continue选项。
+若要取消rebase，指定 --abort选项。
+
+附上了git add -u的解释：
+git add 的几种参数区别： 
+git add -A 保存所有的修改 
+git add . 保存新的添加和修改，但是不包括删除 
+git add -u 保存修改和删除，但是不包括新建文件。 
+如果只想提交某个文件，可以使用git add 路径/文件名 或者 git add 路径/
+
+3. git checkout master
+git merge new
+
+4. git checkout new
+git merge master
+
+idea git rebase操作步骤
+1.在new分支，提交干净。
+2.选中项目右键->Git->Repository->Rebase
+![](https://cos.whatled.com/img/20190109190117.png)
+
+![](https://cos.whatled.com/img/20190109190252.png)
+Onto为需要rebase的分支，比如master
+
+使用命令的形式为:
+    git rebase   [startpoint]   [endpoint]  --onto  [branchName]
+
+其中，[startpoint]  [endpoint]仍然和上一个命令一样指定了一个编辑区间(前开后闭)，
+--onto的意思是要将该指定的提交复制到哪个分支上。
+
+
+发生冲突
+while(存在冲突) {
+    git status
+    找到当前冲突文件，编辑解决冲突
+    git add -u
+    git rebase --continue
+    if( git rebase --abort )
+        break; 
+}
+
+3. git checkout master
+git merge new
+
+4. git checkout new
+git merge master
+
+#### 上面操作有点问题，先理解下git pull --rebaes
+git pull的作用是将远程库中的更改代码合并到当前分支中，默认为：git fetch + git merge
+
+git fetch 的作用就相当于是从远程库中获取最新版本到本地分支，不会自动进行git merge
+
+git pull –rebase 加上–rebase参数的原因是，在多人开发中，有多个merge commit，如果不加该参数，则有多个历史提交线，
+而它的作用，就相当于把分叉的提交线中的一条，每一次提交都捡选出来， 在另一条提交线上提交。最后也形成一条单一的提交线。
