@@ -156,15 +156,20 @@ rebase与merge的区别
 
 
 现在我们有这样的两个分支,test和master，提交如下：
-
+```
       D---E test
      /
 A---B---C---F master
-在master执行git merge test,然后会得到如下结果：
+```
 
+在master执行git merge test,然后会得到如下结果：
+```
       D--------E
      /          \
-A---B---C---F----G   test, master
+A---B---C---F----G
+```
+test, master
+
 在master执行git rebase test，然后得到如下结果：
 
 A---B---D---E---C'---F'   test, master
