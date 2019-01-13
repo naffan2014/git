@@ -499,3 +499,5 @@ git pull –rebase 加上–rebase参数的原因是，在多人开发中，有�
 5.new分支合并master分支。
 
 #### 多人开发 new分支。
+
+#### 模拟多人开发。
