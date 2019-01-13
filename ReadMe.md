@@ -493,3 +493,7 @@ git pull –rebase 加上–rebase参数的原因是，在多人开发中，有�
 #### 那么怎么用idea提交git pull --rebase呢？
 
 1.先在new分支提交干净。
+2.new分支rebase到master
+3.master分支rebase到master
+4.master分支合并new分支。
+5.new分支合并master分支。
