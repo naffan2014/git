@@ -156,15 +156,20 @@ rebase与merge的区别
 
 
 现在我们有这样的两个分支,test和master，提交如下：
-
+```
       D---E test
      /
 A---B---C---F master
-在master执行git merge test,然后会得到如下结果：
+```
 
+在master执行git merge test,然后会得到如下结果：
+```
       D--------E
      /          \
-A---B---C---F----G   test, master
+A---B---C---F----G
+```
+test, master
+
 在master执行git rebase test，然后得到如下结果：
 
 A---B---D---E---C'---F'   test, master
@@ -478,6 +483,29 @@ git merge new
 git merge master
 
 
+git merge master
+
+#### 上面操作有点问题，先理解下git pull --rebaes
+git pull的作用是将远程库中的更改代码合并到当前分支中，默认为：git fetch + git merge
+
+git fetch 的作用就相当于是从远程库中获取最新版本到本地分支，不会自动进行git merge
+
+git pull –rebase 加上–rebase参数的原因是，在多人开发中，有多个merge commit，如果不加该参数，则有多个历史提交线，
+而它的作用，就相当于把分叉的提交线中的一条，每一次提交都捡选出来， 在另一条提交线上提交。最后也形成一条单一的提交线。
+
+#### 那么怎么用idea提交git pull --rebase呢？
+
+1.先在new分支提交干净。
+2.new分支rebase到master
+3.master分支rebase到master
+4.master分支合并new分支。
+5.new分支合并master分支。
+
+#### 多人开发 new分支。
+
+#### 模拟多人开发。
+
+五线谱了。。
 
 突然想起廖雪峰的教程
 
